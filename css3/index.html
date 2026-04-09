@@ -758,6 +758,7 @@ padding: var(--s2) 0;
   /* ===== FOOTER ===== */
   footer {
     background: var(--c30);
+    
     color: rgba(255,255,255,0.55);
     padding: var(--s3) 0 var(--s1);
     margin-top: 0;
@@ -796,5 +797,404 @@ padding: var(--s2) 0;
     gap: 10px;
     margin-bottom: 10px;
   }
-
   .footer-member-av {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(22,163,74,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--c10-light);
+    flex-shrink: 0;
+  }
+
+  .footer-member-name {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+  }
+
+  .footer-phi {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--c10-light);
+    letter-spacing: 0.15em;
+  }
+
+  /* ===== REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== ARTICLE MODAL ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(17,17,16,0.6);
+    z-index: 200;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal-box {
+    background: var(--c60);
+    width: 100%;
+    max-width: 720px;
+    border-radius: 6px;
+    overflow: hidden;
+    transform: translateY(30px);
+    transition: transform 0.35s ease;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+    position: relative;
+  }
+
+  .modal-overlay.open .modal-box {
+    transform: translateY(0);
+  }
+
+  .modal-header {
+    padding: var(--s1) var(--s2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--c60-alt);
+  }
+
+  .modal-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c10);
+  }
+
+  .modal-close {
+    width: 32px; height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--c60);
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--c30-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .modal-close:hover {
+    background: var(--c30);
+    color: white;
+    border-color: var(--c30);
+  }
+
+  .modal-body {
+    padding: var(--s2);
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--s1);
+  }
+
+  .modal-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-bottom: var(--s1);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--s1);
+  }
+
+  .modal-author {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .modal-date, .modal-read {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--c30-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .modal-read {
+    color: var(--c10);
+    background: var(--c10-pale);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .modal-content {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--c30-mid);
+  }
+
+  .modal-content p {
+    margin-bottom: 1.2rem;
+  }
+
+  .modal-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--c30);
+    margin: var(--s1) 0 0.8rem;
+  }
+
+  .modal-content blockquote {
+    border-left: 3px solid var(--c10);
+    padding: 12px 20px;
+    margin: var(--s1) 0;
+    background: var(--c60-alt);
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+    color: var(--c30-mid);
+  }
+
+  .modal-footer {
+    padding: var(--s1) var(--s2);
+    border-top: 1px solid var(--border);
+    background: var(--c60-alt);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .modal-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--c30-muted);
+  }
+
+  .modal-share {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c10);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .modal-share:hover { opacity: 0.7; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .wrapper { padding: 0 20px; }
+    .header-inner { grid-template-columns: 1fr; text-align: center; gap: 10px; }
+    .header-left { justify-content: center; }
+    .header-right { justify-content: center; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-main { border-right: none; border-bottom: 1px solid var(--border); padding: var(--s1) 0; }
+    .content-layout { grid-template-columns: 1fr; }
+    .article-grid { grid-template-columns: 1fr; }
+    .article-list-item { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  Tugas Kelompok &nbsp;·&nbsp; <b>Pemrograman Web</b> &nbsp;·&nbsp; 2025 / 2026
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner wrapper">
+    <div class="header-left">
+      <div class="dot"></div>
+      <span>Blog Aktif</span>
+    </div>
+    <div class="site-title">Kelompok <span>Lima</span></div>
+    <div class="header-right">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Cari artikel...">
+      </div>
+    </div>
+  </div>
+  <nav>
+    <a href="#" class="nav-item active">Semua</a>
+    <a href="#" class="nav-item">Teknologi</a>
+    <a href="#" class="nav-item">Desain</a>
+    <a href="#" class="nav-item">Budaya</a>
+    <a href="#" class="nav-item">Sains</a>
+    <a href="#" class="nav-item">Esai</a>
+    <a href="#" class="nav-item">Anggota</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="wrapper">
+  <section class="hero reveal">
+    <div class="hero-main">
+      <div class="hero-badge">Artikel Utama</div>
+      <h1 class="hero-title">Golden Ratio dalam Desain Web: Antara Matematika dan Keindahan</h1>
+      <p class="hero-excerpt">
+        Proporsi 1:1.618 yang ditemukan ribuan tahun lalu ternyata masih sangat relevan dalam dunia desain digital modern. Dari layout halaman hingga pemilihan ukuran font — golden ratio hadir di mana-mana, bahkan tanpa kita sadari.
+      </p>
+      <div class="hero-meta">
+        <div class="avatar">AE</div>
+        <span class="meta-author">Aditya Eka Saputra</span>
+        <span class="meta-sep">·</span>
+        <span class="meta-date">5 April 2026</span>
+        <span class="meta-sep">·</span>
+        <span class="meta-read">8 mnt baca</span>
+      </div>
+    </div>
+
+    <div class="hero-sidebar">
+      <div class="side-article">
+        <div class="side-num">01</div>
+        <div>
+          <div class="side-cat">Teknologi</div>
+          <div class="side-title">CSS Grid vs Flexbox: Kapan Harus Pakai yang Mana?</div>
+          <div class="side-meta">Muhammad Ramdani · 6 mnt</div>
+        </div>
+      </div>
+      <div class="side-article">
+        <div class="side-num">02</div>
+        <div>
+          <div class="side-cat">Desain</div>
+          <div class="side-title">Psikologi Warna dalam UI: Lebih dari Sekadar Estetika</div>
+          <div class="side-meta">Valdinata Alfauzan · 7 mnt</div>
+        </div>
+      </div>
+      <div class="side-article">
+        <div class="side-num">03</div>
+        <div>
+          <div class="side-cat">Sains</div>
+          <div class="side-title">Algoritma di Balik Rekomendasi Konten yang Kita Konsumsi</div>
+          <div class="side-meta">Taufik Kurniawan · 9 mnt</div>
+        </div>
+      </div>
+      <div class="side-article">
+        <div class="side-num">04</div>
+        <div>
+          <div class="side-cat">Esai</div>
+          <div class="side-title">Belajar Koding di Era AI: Masih Relevan atau Sudah Usang?</div>
+          <div class="side-meta">Lazuardi Ananda · 5 mnt</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION LABEL -->
+  <div class="sec-label reveal">
+    <span class="sec-label-text">Artikel Terbaru</span>
+    <div class="sec-line"></div>
+    <a href="#" class="sec-link">Lihat Semua →</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content-layout">
+
+    <!-- ARTICLES -->
+    <div>
+      <div class="article-grid reveal">
+        <div class="article-card">
+          <div class="card-thumb ct-1">💻</div>
+          <div class="card-body">
+            <div class="card-cat">Teknologi</div>
+            <div class="card-title">Responsive Design: Membuat Web yang Nyaman di Semua Layar</div>
+            <p class="card-excerpt">Dari smartphone 4 inci hingga monitor 4K, desain responsif adalah fondasi web modern. Pelajari teknik media query, fluid grid, dan flexible images secara mendalam.</p>
+            <div class="card-footer">
+              <div class="card-author">
+                <div class="avatar">MR</div>
+                <span class="card-author-name">Muhammad Ramdani</span>
+              </div>
+              <span class="card-read">4 Apr · 6 mnt</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="card-thumb ct-2">🎨</div>
+          <div class="card-body">
+            <div class="card-cat">Desain</div>
+            <div class="card-title">Tipografi Web: Memilih Font yang Tepat untuk Keterbacaan Optimal</div>
+            <p class="card-excerpt">Pilihan font bukan sekadar soal selera. Ada ilmu di balik keterbacaan, hierarki visual, dan bagaimana huruf memengaruhi persepsi pengguna terhadap sebuah website.</p>
+            <div class="card-footer">
+              <div class="card-author">
+                <div class="avatar">VA</div>
+                <span class="card-author-name">Valdinata Alfauzan</span>
+              </div>
+              <span class="card-read">3 Apr · 5 mnt</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="card-thumb ct-3">🧠</div>
+          <div class="card-body">
+            <div class="card-cat">Sains</div>
+            <div class="card-title">Bagaimana Otak Memproses Informasi Visual di Layar Digital?</div>
+            <p class="card-excerpt">Neurosains kognitif mengungkap cara manusia membaca dan memindai halaman web. Temuan ini mengubah cara desainer menyusun layout dan hierarki konten.</p>
+            <div class="card-footer">
+              <div class="card-author">
+                <div class="avatar">TK</div>
+                <span class="card-author-name">Taufik Kurniawan</span>
+              </div>
+              <span class="card-read">2 Apr · 8 mnt</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="card-thumb ct-4">✍️</div>
+          <div class="card-body">
