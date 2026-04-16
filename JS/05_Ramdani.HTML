@@ -2,117 +2,44 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Login App</title>
-  <style>
-    body {
-      font-family: Arial;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f0f0f0;
-    }
-
-    .box {
-      background: white;
-      padding: 20px;
-      border: 1px solid #ccc;
-      width: 250px;
-      text-align: center;
-    }
-
-    input {
-      width: 90%;
-      padding: 8px;
-      margin: 5px 0;
-    }
-
-    button {
-      margin: 5px;
-      padding: 8px 12px;
-    }
-
-    #dashboard {
-      display: none;
-    }
-  </style>
+  <title>Input Username</title>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div class="box" id="loginBox">
-  <h3>Login</h3>
+<h3>Form</h3>
 
-  <input type="text" id="US" placeholder="Username">
-  <input type="password" id="S" placeholder="Password">
+<!-- Input -->
+<input type="text" id="US" placeholder="Username">
+<input type="password" id="S" placeholder="Password">
 
-  <br>
+<br><br>
 
-  <button id="btnLogin">Login</button>
-  <button id="btnCancel">Cancel</button>
-</div>
+<!-- Tombol -->
+<button id="btnLogin">Tampilkan</button>
+<button id="btnCancel">Cancel</button>
 
-<!-- DASHBOARD -->
-<div class="box" id="dashboard">
-  <h3>Dashboard</h3>
-  <p id="welcome"></p>
-  <button id="btnLogout">Logout</button>
-</div>
+<!-- Output -->
+<p id="hasil"></p>
 
 <script>
   // DOM Selector
   let btnLogin = document.getElementById("btnLogin");
   let btnCancel = document.getElementById("btnCancel");
-  let btnLogout = document.getElementById("btnLogout");
-
   let US = document.getElementById("US");
   let S = document.getElementById("S");
+  let hasil = document.getElementById("hasil");
 
-  let loginBox = document.getElementById("loginBox");
-  let dashboard = document.getElementById("dashboard");
-  let welcome = document.getElementById("welcome");
-
-  // CEK STATUS LOGIN SAAT LOAD
-  if (localStorage.getItem("login") === "true") {
-    showDashboard(localStorage.getItem("username"));
-  }
-
-  // EVENT LOGIN
+  // Event klik tombol
   btnLogin.addEventListener("click", function() {
-    let username = US.value;
-    let password = S.value;
-
-    if (username === "admin" && password === "123") {
-      localStorage.setItem("login", "true");
-      localStorage.setItem("username", username);
-
-      showDashboard(username);
-    } else {
-      alert("Username atau Password salah!");
-    }
+    hasil.innerText = US.value;
   });
 
-  // EVENT CANCEL
+  // Tombol cancel (clear)
   btnCancel.addEventListener("click", function() {
     US.value = "";
     S.value = "";
+    hasil.innerText = "";
   });
-
-  // EVENT LOGOUT
-  btnLogout.addEventListener("click", function() {
-    localStorage.removeItem("login");
-    localStorage.removeItem("username");
-
-    dashboard.style.display = "none";
-    loginBox.style.display = "block";
-  });
-
-  // FUNCTION TAMPIL DASHBOARD
-  function showDashboard(username) {
-    loginBox.style.display = "none";
-    dashboard.style.display = "block";
-    welcome.innerText = "Selamat datang, " + username;
-  }
 </script>
 
 </body>
