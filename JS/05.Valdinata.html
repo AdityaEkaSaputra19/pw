@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Retro Neon</title>
+
+<style>
+    body {
+        background: radial-gradient(circle at top, #1a0026, #000);
+        font-family: 'Courier New', monospace;
+        color: #fff;
+    }
+
+    .login-container {
+        width: 320px;
+        margin: 100px auto;
+        padding: 25px;
+        border: 2px solid #ff00ff;
+        border-radius: 15px;
+        background: rgba(0,0,0,0.7);
+        box-shadow: 0 0 20px #ff00ff, 0 0 40px #8000ff;
+        animation: glowBox 2s infinite alternate;
+    }
+
+    @keyframes glowBox {
+        from {
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #8000ff;
+        }
+        to {
+            box-shadow: 0 0 25px #ff66ff, 0 0 50px #a64dff;
+        }
+    }
+
+    h2 {
+        text-align: center;
+        color: #ff66ff;
+        text-shadow: 0 0 10px #ff00ff;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        color: #ff99ff;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        background: black;
+        border: 1px solid #ff00ff;
+        color: #fff;
+        border-radius: 8px;
+        outline: none;
+        box-shadow: 0 0 10px #8000ff inset;
+    }
+
+    input:focus {
+        box-shadow: 0 0 15px #ff00ff inset;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    button {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 5px #000;
+        transition: 0.3s;
+    }
+
+    #btnlogin {
+        background: linear-gradient(45deg, #ff00ff, #8000ff);
+        box-shadow: 0 0 10px #ff00ff;
+    }
+
+    #btnlogin:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #ff66ff;
+    }
+
+    #btncancel {
+        background: linear-gradient(45deg, #ff4da6, #ff00cc);
+        box-shadow: 0 0 10px #ff4da6;
+    }
+
+    #btncancel:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #ff80bf;
+    }
+
+    .error {
+        color: red;
+        text-align: center;
+        margin-top: 10px;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2>LOGIN SYSTEM</h2>
+
+    <div class="form-group">
+        <label>Username:</label>
+        <input type="text" id="us">
+    </div>
+
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="password" id="pw">
+    </div>
+
+    <div class="button-group">
+        <button id="btnlogin">LOGIN</button>
+        <button id="btncancel">CANCEL</button>
+    </div>
+
+    <div class="error" id="errorMsg">ACCESS DENIED</div>
+</div>
+
+<script>
+    const btnLogin = document.getElementById("btnlogin");
+    const btnCancel = document.getElementById("btncancel");
+
+    const us = document.getElementById("us");
+    const pw = document.getElementById("pw");
+    const errorMsg = document.getElementById("errorMsg");
+
+    // akun login
+    const usernameBenar = "ramdani123";
+    const passwordBenar = "prince123";
+
+    btnLogin.addEventListener("click", function() {
+        if (us.value === usernameBenar && pw.value === passwordBenar) {
+            alert("LOGIN BERHASIL 🚀");
+            errorMsg.style.display = "none";
+        } else {
+            errorMsg.style.display = "block";
+        }
+    });
+
+    btnCancel.addEventListener("click", function() {
+        us.value = "";
+        pw.value = "";
+        errorMsg.style.display = "none";
+    });
+</script>
+
+</body>
+</html>
