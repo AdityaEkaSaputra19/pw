@@ -1499,3 +1499,227 @@ font-size: 0.62rem;
   <div class="banner reveal">
     <div class="banner-quote">
       "Desain bukan hanya soal tampilan — ia soal <span>bagaimana sesuatu bekerja.</span>"
+</div>
+    <div class="banner-src">— Steve Jobs</div>
+  </div>
+</div>
+
+<!-- ARTICLE MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <span class="modal-cat" id="modalCat"></span>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-meta">
+        <div class="avatar" id="modalAvatar"></div>
+        <span class="modal-author" id="modalAuthor"></span>
+        <span class="meta-sep">·</span>
+        <span class="modal-date" id="modalDate"></span>
+        <span class="meta-sep">·</span>
+        <span class="modal-read" id="modalRead"></span>
+      </div>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-tags" id="modalTags"></div>
+      <span class="modal-share">↗ Bagikan</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrapper">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="site-title">Kelompok <span>Lima</span></div>
+        <p class="footer-desc">
+          Blog tugas kelompok mata kuliah Pemrograman Web. Berisi artikel seputar teknologi, desain, dan pengembangan web yang ditulis oleh 5 anggota kelompok.
+        </p>
+      </div>
+      <div>
+        <div class="footer-members-title">Anggota Kelompok</div>
+        <div class="footer-member"><div class="footer-member-av">AE</div><span class="footer-member-name">Aditya Eka Saputra</span></div>
+        <div class="footer-member"><div class="footer-member-av">MR</div><span class="footer-member-name">Muhammad Ramdani</span></div>
+        <div class="footer-member"><div class="footer-member-av">VA</div><span class="footer-member-name">Valdinata Alfauzan</span></div>
+        <div class="footer-member"><div class="footer-member-av">TK</div><span class="footer-member-name">Taufik Kurniawan</span></div>
+        <div class="footer-member"><div class="footer-member-av">LA</div><span class="footer-member-name">Lazuardi Ananda</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Kelompok Lima — Tugas Pemrograman Web</div>
+      <div class="footer-phi">φ 60 : 30 : 10</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== PROGRESS BAR =====
+  window.addEventListener('scroll', () => {
+    const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('prog').style.width = pct + '%';
+  });
+
+  // ===== SCROLL REVEAL =====
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ===== NAV ACTIVE =====
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // ===== NOTIFIKASI SYSTEM =====
+  let notifications = [
+    {
+      id: 1,
+      icon: '📝',
+      iconClass: 'ni-green',
+      msg: '<b>Artikel baru</b> dari Aditya — "Golden Ratio dalam Desain Web" telah diterbitkan.',
+      time: '5 mnt lalu',
+      unread: true
+    },
+    {
+      id: 2,
+      icon: '👥',
+      iconClass: 'ni-blue',
+      msg: '<b>Taufik Kurniawan</b> menambahkan artikel baru di kategori Sains.',
+      time: '1 jam lalu',
+      unread: true
+    },
+    {
+      id: 3,
+      icon: '🏷️',
+      iconClass: 'ni-amber',
+      msg: 'Topik <b>Responsive Design</b> sedang trending minggu ini.',
+      time: '3 jam lalu',
+      unread: true
+    },
+    {
+      id: 4,
+      icon: '✅',
+      iconClass: 'ni-green',
+      msg: 'Blog Kelompok Lima berhasil dipublikasikan untuk semester ini.',
+      time: 'Kemarin',
+      unread: false
+    }
+  ];
+
+  const notifBadge = document.getElementById('notifBadge');
+  const notifBtn = document.getElementById('notifBtn');
+  const notifDropdown = document.getElementById('notifDropdown');
+  const notifList = document.getElementById('notifList');
+  const notifClear = document.getElementById('notifClear');
+
+  function countUnread() {
+    return notifications.filter(n => n.unread).length;
+  }
+
+  function renderBadge() {
+    const count = countUnread();
+    if (count > 0) {
+      notifBadge.textContent = count > 9 ? '9+' : count;
+      notifBadge.classList.add('visible');
+    } else {
+      notifBadge.classList.remove('visible');
+    }
+  }
+
+  function renderNotifList() {
+    if (notifications.length === 0) {
+      notifList.innerHTML = '<div class="notif-empty">Tidak ada notifikasi</div>';
+      return;
+    }
+    notifList.innerHTML = notifications.map(n => `
+      <div class="notif-item ${n.unread ? 'unread' : ''}" data-id="${n.id}">
+        <div class="notif-icon ${n.iconClass}">${n.icon}</div>
+        <div class="notif-text">
+          <div class="notif-msg">${n.msg}</div>
+          <div class="notif-time">${n.time}</div>
+        </div>
+        ${n.unread ? '<div class="unread-dot"></div>' : ''}
+      </div>
+    `).join('');
+
+    notifList.querySelectorAll('.notif-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const id = parseInt(item.dataset.id);
+        const notif = notifications.find(n => n.id === id);
+        if (notif && notif.unread) {
+          notif.unread = false;
+          renderNotifList();
+          renderBadge();
+        }
+      });
+    });
+  }
+
+  function toggleDropdown() {
+    notifDropdown.classList.toggle('open');
+  }
+
+  notifBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDropdown();
+    renderNotifList();
+  });
+
+  notifClear.addEventListener('click', () => {
+    notifications.forEach(n => n.unread = false);
+    renderNotifList();
+    renderBadge();
+    showToast('Semua notifikasi ditandai dibaca', '#16a34a');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('notifWrap').contains(e.target)) {
+      notifDropdown.classList.remove('open');
+    }
+  });
+
+  // ===== TOAST SYSTEM =====
+  function showToast(msg, color = '#111110') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `<span class="toast-dot" style="background:${color}"></span>${msg}`;
+    container.appendChild(toast);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => toast.classList.add('show'));
+    });
+    setTimeout(() => {
+      toast.classList.add('hide');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  // ===== NOTIF: tambah saat baca artikel =====
+  function addNotif(icon, iconClass, msg) {
+    const id = Date.now();
+    notifications.unshift({ id, icon, iconClass, msg, time: 'Baru saja', unread: true });
+    renderBadge();
+    // animasi bell shake
+    notifBadge.classList.remove('shake');
+    void notifBadge.offsetWidth;
+    notifBadge.classList.add('shake');
+  }
+
+  // ===== NOTIF: tag diklik =====
+  document.querySelectorAll('.tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const topik = tag.textContent;
+      addNotif('🏷️', 'ni-amber', `Kamu melihat topik <b>${topik}</b>. Menampilkan artikel terkait.`);
+      showToast(`Topik: ${topik}`, '#d97706');
+    });
+  });
